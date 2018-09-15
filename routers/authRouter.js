@@ -1,5 +1,5 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt-nodejs');
 const authRouter = express.Router();
 // const passport = require('passport');
 // const localStrategy = require('passport-local').Strategy;
