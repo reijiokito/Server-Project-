@@ -36,7 +36,7 @@ mongoose.connect("mongodb://PTgym:dang20146179@ds151292.mlab.com:51292/local_lib
     else console.log("DB connect success!");
 });
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 app.listen(port, function(err){
     if(err) console.log(err);
     else console.log(`Server is running at port: ${port}`);
