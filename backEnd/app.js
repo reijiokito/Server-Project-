@@ -1,0 +1,43 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const session = require('express-session');
+
+
+
+const apiRouter = require('./routers/apiRouter');
+
+let app = express();
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+app.use(cors({ origin: ['http://localhost:8080','http://localhost:3000'], credentials: true }));
+
+app.use(session({
+    secret: "Secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie:{secure:false, maxAge: 7*24*60*60*1000,httpOnly:false}  //minisecond
+}));
+
+app.use("/api",apiRouter);
+
+
+
+
+
+
+
+
+mongoose.connect("mongodb://PTgym:dang20146179@ds151292.mlab.com:51292/local_library",{ useNewUrlParser: true }, (err) => {
+    if(err) console.log(err);
+    else console.log("DB connect success!");
+});
+
+const port = 8080;
+app.listen(port, function(err){
+    if(err) console.log(err);
+    else console.log(`Server is running at port: ${port}`);
+});
