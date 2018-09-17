@@ -7,10 +7,16 @@ const UserSchema = new Schema({
     email: { type: String, required: true },
     sdt: { type: String },
     hashpass: { type: String, required: true },
-    gymJoin: {type: Schema.Types.ObjectId, ref: "Gym" }
+    gymJoin: {
+        gymID:{type: Schema.Types.ObjectId, ref: "Gym" },
+        active : {type: String, required:true}
+    }
     ,
-    chosenPT: { type: Schema.Types.ObjectId, refPath: "gymJoin.PT" }
-        
+    chosenPT: {
+        PT:{ type: Schema.Types.ObjectId, refPath: "gymJoin.PT" },
+        active: {type:String,required: true}
+
+    }
 }, {
         timestamps: true
     });
