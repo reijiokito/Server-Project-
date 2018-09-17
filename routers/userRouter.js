@@ -12,8 +12,7 @@ userRouter.get("/", (req, res) => {
 
 userRouter.get("/:userID", (req, res) => {
     UserModel.findById({ _id: req.params.userID })
-    .populate('chosenPT.PT')
-    .populate('gymJoin.gymID')
+    .populate('chosenPT.PT')    
     .exec((err, userFound) => {
         if (err) res.status(500).send({ success: 0, err })
         else if (!userFound) res.status(401).send({ success: 0, message: "Not found!" })
@@ -38,12 +37,7 @@ userRouter.put("/:userID", async (req, res) => {
     try {
         const user = await UserModel.findById(req.params.userID);        
         if (!user) res.status(404).send({ success: 0, errMsg: "Not Founded" });
-        else {
-
-            if (req.body.name) user.name = req.body.name;
-            if (req.body.username) user.username = req.body.username;
-            if (req.body.email) user.email = req.body.email;
-            if (req.body.sdt) user.sdt = req.body.sdt;
+        else {            
             if (req.body.gymJoin) user.gymJoin = req.body.gymJoin;
             
             if (req.body.chosenPT) user.chosenPT = req.body.chosenPT;
