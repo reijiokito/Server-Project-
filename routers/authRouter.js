@@ -68,7 +68,7 @@ authRouter.post('/login', (req, res) => {
     if (!username || !password) {
         res.status(400).send({ success: 0, message: "Redo pls" })
     } else {
-        UserModel.findOne({ username })
+        UserModel.findOne({ username })        
             .then(UserFound => {
                 if (!username) res.status(400).send({ success: 0, message: "Not found!" })
                 else {
