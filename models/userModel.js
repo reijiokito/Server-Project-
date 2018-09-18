@@ -13,7 +13,7 @@ const UserSchema = new Schema({
     }
     ,
     chosenPT: {
-        PT:{ type: Schema.Types.ObjectId, refPath: "gymJoin.PT" },
+        PT:{ type: Schema.Types.ObjectId, ref: "gymJoin.PT" },
         active: {type:String,required: true}
 
     }
