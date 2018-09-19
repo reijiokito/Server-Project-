@@ -31,7 +31,7 @@ app.use("/api",apiRouter);
 
 
 
-mongoose.connect("mongodb://localhost:27017/techkids-hotgirl",{ useNewUrlParser: true }, (err) => {
+mongoose.connect("mongodb://PTgym:dang20146179@ds151292.mlab.com:51292/local_library",{ useNewUrlParser: true }, (err) => {
     if(err) console.log(err);
     else console.log("DB connect success!");
 });
