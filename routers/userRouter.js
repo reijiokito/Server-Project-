@@ -10,8 +10,7 @@ userRouter.get("/", (req, res) => {
     })
 });
 
-userRouter.get("/:userID", (req, res) => {
-    console.log(req.body);
+userRouter.get("/:userID", (req, res) => {    
     UserModel.findById({ _id: req.params.userID })
     .populate("chosenPT.PT")
     .populate("gymJoin.gymID")
@@ -24,7 +23,8 @@ userRouter.get("/:userID", (req, res) => {
 
 userRouter.post("/", (req, res) => {
     console.log(req.body);
-    const { username,name, email, sdt, password, gymJoin, chosenPT } = req.body;
+    
+    const { username,name, email, sdt, password, gymJoin, chosenPT } = req.body;    
     const salt = bcrypt.genSaltSync(10);
     const hashpass = bcrypt.hashSync(password, salt);
     UserModel.create({ username,name, email, sdt, hashpass, gymJoin, chosenPT }, (err, userCreated) => {

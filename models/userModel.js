@@ -9,12 +9,12 @@ const UserSchema = new Schema({
     hashpass: { type: String, required: true },
     gymJoin: {
         gymID:{type: Schema.Types.ObjectId, ref: "Gym" },
-        active : {type: String}
+        active : {type: String,default:"false"}
     }
     ,
     chosenPT: {
         PT:{ type: Schema.Types.ObjectId, ref: "gymJoin.PT" },
-        active: {type:String}
+        active: {type:String,default:"false"}
 
     }
 }, {
