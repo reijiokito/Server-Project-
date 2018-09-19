@@ -12,8 +12,6 @@ userRouter.get("/", (req, res) => {
 
 userRouter.get("/:userID", (req, res) => {    
     UserModel.findById({ _id: req.params.userID })
-    .populate("chosenPT")
-    .populate("gymJoin")
     .exec((err, userFound) => { 
         if (err) res.status(500).send({ success: 0, err })
         else if (!userFound) res.status(401).send({ success: 0, message: "Not found!" })
